@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useMousePosition } from '../hooks/useMousePosition';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { getItemCount, toggleCart } = useCart();
+  const { x, y } = useMousePosition();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,13 +22,28 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Calculate spotlight position relative to navbar
+  const spotlightX = (x / window.innerWidth) * 100;
+  const spotlightY = Math.min((y / 100) * 100, 100); // Limit to navbar height
+
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         isScrolled ? 'bg-black py-2 shadow-lg' : 'bg-transparent py-4'
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
+      <div 
+        className="absolute inset-0 opacity-20"
+        style={{ 
+          background: `radial-gradient(
+            circle 400px at ${spotlightX}% ${spotlightY}%, 
+            rgba(255, 255, 255, 0.15), 
+            transparent 80%
+          )`,
+        }}
+      ></div>
+
+      <div className="container mx-auto px-4 flex justify-between items-center relative">
         {/* Logo */}
         <div className="flex items-center">
           <img 
@@ -115,5 +132,3 @@ const Navbar: React.FC = () => {
     </nav>
   );
 };
-
-export default Navbar;
