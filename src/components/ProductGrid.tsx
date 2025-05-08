@@ -1,10 +1,12 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 import { products } from '../data/products';
+import RainEffect from './RainEffect';
 
 const ProductGrid: React.FC = () => {
   return (
-    <section id="products" className="py-20 md:py-32">
+    <section id="products" className="py-20 md:py-32 relative">
+      <RainEffect />
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <h2 className="text-4xl font-bold tracking-tighter text-white mb-4">COLLECTION 0.01 </h2>

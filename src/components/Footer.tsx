@@ -1,9 +1,11 @@
 import React from 'react';
 import { Instagram, Twitter, Facebook, Mail } from 'lucide-react';
+import RainEffect from './RainEffect';
 
 const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="py-12 border-t border-gray-800">
+    <footer id="contact" className="py-12 border-t border-gray-800 relative">
+      <RainEffect />
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
@@ -15,11 +17,8 @@ const Footer: React.FC = () => {
               <a href="https://www.instagram.com/bulletbull.ar/" className="text-white hover:text-gray-400 transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
-              
             </div>
           </div>
-          
-
           
           <div>
             <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Information</h4>
