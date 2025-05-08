@@ -1,10 +1,8 @@
 import React from 'react';
-import RainEffect from './RainEffect';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-20 md:py-32 border-t border-gray-800 relative">
-      <RainEffect />
+    <section id="about" className="py-20 md:py-32 border-t border-gray-800">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
