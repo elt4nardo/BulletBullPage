@@ -10,21 +10,20 @@ const About: React.FC = () => {
             <p className="text-white opacity-80 mb-6">
             Lo que comenzó como una idea entre amigos, con sueños grandes y muchas charlas, hoy es una realidad. Después de meses de esfuerzo, planificación y trabajo constante, en 2025 pudimos hacer realidad nuestro proyecto. Creemos en el poder de emprender con pasión y en construir algo propio desde cero. Esta empresa no solo representa lo que hacemos, sino también quiénes somos y todo lo que estamos dispuestos a dar para crecer. Esto recién empieza, y lo mejor está por venir.
             </p>
-            
           </div>
           
           <div className="grid grid-cols-2 gap-4">
-            <div className="aspect-square bg-gray-900 p-6 flex items-center justify-center">
-              <p className="text-white font-bold text-3xl tracking-tight">EXCLUSIVIDAD</p>
+            <div className="aspect-square bg-gray-900 p-4 md:p-6 flex items-center justify-center">
+              <p className="text-white font-bold text-xl md:text-3xl tracking-tight text-center break-words">EXCLUSIVIDAD</p>
             </div>
-            <div className="aspect-square bg-gray-900 p-6 flex items-center justify-center">
-              <p className="text-white font-bold text-3xl tracking-tight">CALIDAD</p>
+            <div className="aspect-square bg-gray-900 p-4 md:p-6 flex items-center justify-center">
+              <p className="text-white font-bold text-xl md:text-3xl tracking-tight">CALIDAD</p>
             </div>
-            <div className="aspect-square bg-gray-900 p-6 flex items-center justify-center">
-              <p className="text-white font-bold text-3xl tracking-tight">LETAL</p>
+            <div className="aspect-square bg-gray-900 p-4 md:p-6 flex items-center justify-center">
+              <p className="text-white font-bold text-xl md:text-3xl tracking-tight">LETAL</p>
             </div>
-            <div className="aspect-square bg-gray-900 p-6 flex items-center justify-center">
-              <p className="text-white font-bold text-3xl tracking-tight">ELITE</p>
+            <div className="aspect-square bg-gray-900 p-4 md:p-6 flex items-center justify-center">
+              <p className="text-white font-bold text-xl md:text-3xl tracking-tight">ELITE</p>
             </div>
           </div>
         </div>
