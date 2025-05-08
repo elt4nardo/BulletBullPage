@@ -26,6 +26,17 @@ const Navbar: React.FC = () => {
         isScrolled ? 'bg-black py-2 shadow-lg' : 'bg-transparent py-4'
       }`}
     >
+      {/* Semicircle Spotlight Effect */}
+      <div className="absolute inset-x-0 top-0 h-[150%] overflow-hidden pointer-events-none">
+        <div 
+          className="absolute left-1/2 -translate-x-1/2 -top-1/2 w-[200%] aspect-[2/1]"
+          style={{
+            background: 'radial-gradient(ellipse at top, rgba(255,255,255,0.15) 0%, rgba(116,209,255,0.05) 30%, transparent 60%)',
+            filter: 'blur(20px)',
+          }}
+        />
+      </div>
+
       <div className="container mx-auto px-4 flex justify-between items-center relative">
         {/* Logo */}
         <div className="flex items-center">
