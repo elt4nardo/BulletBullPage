@@ -29,3 +29,5 @@ const BackgroundEffect: React.FC = () => {
     </div>
   );
 };
+
+export default BackgroundEffect
