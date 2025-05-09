@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import ProductModal from './ProductModal';
@@ -11,7 +11,18 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState(product.image);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const allImages = [product.image, ...product.additionalImages];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
+  };
 
   const originalPrice = product.price;
   const discountedPrice = product.price * 1.2; // 20% discount
@@ -21,16 +32,33 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div 
         className="group relative bg-transparent overflow-hidden border border-gray-800 transition-all duration-300 hover:border-white cursor-pointer"
         onClick={() => setIsModalOpen(true)}
-        onMouseEnter={() => product.additionalImages.length > 0 && setCurrentImage(product.additionalImages[0])}
-        onMouseLeave={() => setCurrentImage(product.image)}
       >
-        <div className="aspect-square overflow-hidden">
+        <div className="aspect-square overflow-hidden relative">
           <img 
-            src={currentImage} 
+            src={allImages[currentImageIndex]} 
             alt={product.name} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
+          
+          {allImages.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                aria-label="Next image"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </>
+          )}
         </div>
         
         <div className="p-4 bg-black bg-opacity-90">
@@ -43,7 +71,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         <button 
-          onClick={() => setIsModalOpen(true)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsModalOpen(true);
+          }}
           className="absolute right-4 -bottom-10 group-hover:bottom-4 w-10 h-10 bg-white text-black flex items-center justify-center transition-all duration-300"
           aria-label={`Add ${product.name} to cart`}
         >

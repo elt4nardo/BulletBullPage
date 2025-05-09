@@ -35,10 +35,11 @@ const RainEffect: React.FC = () => {
     // Animation loop
     let animationFrameId: number;
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       // Draw and update drops
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
       ctx.lineWidth = 1;
 
       drops.forEach(drop => {
@@ -70,8 +71,8 @@ const RainEffect: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
-      style={{ opacity: 0.3 }}
+      className="absolute inset-0 pointer-events-none z-0"
+      style={{ opacity: 0.5 }}
     />
   );
 };
