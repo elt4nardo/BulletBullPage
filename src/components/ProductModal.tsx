@@ -59,7 +59,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
   <img 
     src={allImages[currentImageIndex]} 
     alt={product.name}
-    className="w-auto h-auto object-cover animate-fadeIn transition-transform duration-300 ease-in-out max-w-[100%] max-h-[100%] mx-auto my-auto" // Ajusté max-w y max-h a 90% para que no se vea tan pequeña
+    className="w-auto h-auto object-cover animate-fadeIn transition-transform duration-300 ease-in-out max-w-[110%] max-h-[110%] mx-auto my-auto" // Ajusté max-w y max-h a 90% para que no se vea tan pequeña
     onClick={() => {
       // Aquí podrías hacer una acción cuando se haga clic sobre la imagen (ej. cambiar de imagen)
       setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
