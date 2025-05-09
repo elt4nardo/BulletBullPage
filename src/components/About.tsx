@@ -202,12 +202,10 @@ const About = () => {
                   {item.icon}
                 </div>
 
-<p className="text-white font-bold text-sm sm:text-base md:text-lg tracking-tight mb-2 text-center break-words">
+                <p className="text-white font-bold text-sm sm:text-base md:text-lg tracking-tight mb-2 text-center break-words">
   {item.text}
 </p>
 
-  {item.text}
-</p>
 
 
                 <p className="text-white/60 text-sm font-light">{item.description}</p>
