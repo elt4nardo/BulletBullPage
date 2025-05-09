@@ -1,4 +1,5 @@
 export interface Product {
+  availableSizes: any;
   id: string;
   name: string;
   price: number;
@@ -7,16 +8,16 @@ export interface Product {
   additionalImages: string[];
   category: string;
   details: string[];
-  variants?: ProductVariant[];
-}
-
-export interface ProductVariant {
-  id: string;
-  name: string;
-  image: string;
+  sizes: string[];
 }
 
 export interface CartItem {
   product: Product;
   quantity: number;
+  size: string;
+}
+
+export interface CustomerInfo {
+  firstName: string;
+  lastName: string;
 }
