@@ -49,6 +49,7 @@ const Footer: React.FC = () => {
               <li>VISA</li>
               <li>MasterCard</li>
               <li>Mercado Pago</li>
+              <li>Efectivo</li>
             </div>
           </div>
         </div>
