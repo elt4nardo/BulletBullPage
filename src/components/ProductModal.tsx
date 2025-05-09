@@ -20,7 +20,6 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
       if (e.key === 'ArrowLeft') prevImage();
       if (e.key === 'ArrowRight') nextImage();
     };
-
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [onClose]);
@@ -48,55 +47,38 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
         <button 
           onClick={onClose}
           className="absolute top-4 right-4 text-white opacity-70 hover:opacity-100 transition-opacity z-10"
-          aria-label="Close modal"
         >
           <X size={24} />
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Galería de imágenes */}
+          {/* Gallery */}
           <div className="relative aspect-square bg-gray-900">
             <img 
               src={allImages[currentImageIndex]} 
               alt={product.name}
               className="w-full h-full object-cover animate-fadeIn"
             />
-
             {allImages.length > 1 && (
               <>
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    prevImage();
-                  }}
+                  onClick={(e) => { e.stopPropagation(); prevImage(); }}
                   className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70 transition-all"
-                  aria-label="Previous image"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    nextImage();
-                  }}
+                  onClick={(e) => { e.stopPropagation(); nextImage(); }}
                   className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70 transition-all"
-                  aria-label="Next image"
                 >
                   <ChevronRight size={20} />
                 </button>
-
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
                   {allImages.map((_, index) => (
                     <button
                       key={index}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrentImageIndex(index);
-                      }}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        currentImageIndex === index ? 'bg-white' : 'bg-white opacity-50'
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
+                      onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
+                      className={`w-2 h-2 rounded-full ${currentImageIndex === index ? 'bg-white' : 'bg-white opacity-50'}`}
                     />
                   ))}
                 </div>
@@ -104,7 +86,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
             )}
           </div>
 
-          {/* Detalles del producto */}
+          {/* Info */}
           <div className="space-y-6">
             <div>
               <h2 className="text-3xl font-bold tracking-tighter text-white mb-2">{product.name}</h2>
@@ -113,27 +95,30 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
 
             <p className="text-white opacity-80">{product.description}</p>
 
-            {/* Selección de talles */}
-            {product.sizes?.length > 0 && (
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-3">Talles disponibles</h3>
-                <div className="flex flex-wrap gap-2">
-                  {product.sizes.map((size) => (
+            {/* Talles */}
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-3">Talles</h3>
+              <div className="flex gap-2 flex-wrap">
+                {product.sizes.map((size) => {
+                  const isAvailable = product.availableSizes.includes(size);
+                  const isSelected = selectedSize === size;
+                  return (
                     <button
                       key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2 border rounded-md text-white transition-all ${
-                        selectedSize === size
-                          ? 'bg-white text-black border-white'
-                          : 'border-gray-600 hover:border-white'
-                      }`}
+                      disabled={!isAvailable}
+                      onClick={() => isAvailable && setSelectedSize(size)}
+                      className={`px-4 py-2 rounded border text-sm transition-all
+                        ${isAvailable ? 
+                          (isSelected ? 'bg-white text-black font-semibold' : 'text-white border-white hover:bg-white hover:text-black') :
+                          'border-gray-600 text-gray-500 cursor-not-allowed'}
+                      `}
                     >
                       {size}
                     </button>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
-            )}
+            </div>
 
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-3">Detalles</h3>
@@ -153,13 +138,11 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
                 handleAddToCart();
               }}
               disabled={!selectedSize}
-              className={`w-full inline-flex items-center justify-center px-6 py-3 font-semibold tracking-wide text-sm uppercase transition-transform focus:outline-none ${
-                selectedSize
-                  ? 'bg-white text-black hover:translate-x-1'
-                  : 'bg-gray-700 text-white cursor-not-allowed'
-              }`}
+              className={`w-full inline-flex items-center justify-center px-6 py-3 font-semibold tracking-wide text-sm uppercase transition-transform focus:outline-none
+                ${selectedSize ? 'bg-white text-black hover:translate-x-1' : 'bg-gray-700 text-gray-400 cursor-not-allowed'}
+              `}
             >
-              Agregar al carrito
+              Añadir al carrito
               <Plus size={16} className="ml-2" />
             </button>
           </div>
