@@ -53,10 +53,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const addToCart = (product: Product, size: string) => {
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => 
+      const existingItem = prevItems.find(item =>
         item.product.id === product.id && item.size === size
       );
-      
+
       if (existingItem) {
         return prevItems.map(item =>
           item.product.id === product.id && item.size === size
@@ -71,10 +71,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const removeFromCart = (productId: string, size: string) => {
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => 
+      const existingItem = prevItems.find(item =>
         item.product.id === productId && item.size === size
       );
-      
+
       if (existingItem && existingItem.quantity > 1) {
         return prevItems.map(item =>
           item.product.id === productId && item.size === size
@@ -82,7 +82,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             : item
         );
       } else {
-        return prevItems.filter(item => 
+        return prevItems.filter(item =>
           !(item.product.id === productId && item.size === size)
         );
       }
@@ -104,18 +104,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const generateWhatsAppLink = (firstName: string, lastName: string) => {
     if (cartItems.length === 0 || !firstName || !lastName) return '';
-    
+
     const phoneNumber = '+5493412157523';
-    
-    const itemsText = cartItems.map(item => 
-      `${item.product.name} (${item.size}) x${item.quantity} - $${(item.product.price * item.quantity).toFixed(2)}`
+
+    const itemsText = cartItems.map(item =>
+      `${item.product.name} (Talle ${item.size}) x${item.quantity} - $${(item.product.price * item.quantity).toFixed(2)}`
     ).join('\n');
-    
+
     const totalText = `\nTotal: $${getCartTotal().toFixed(2)}`;
     const customerText = `\nNombre: ${firstName} ${lastName}`;
-    
+
     const message = `Buenos días, me gustaría hacer el siguiente pedido:\n${itemsText}${totalText}${customerText}`;
-    
+
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
 
