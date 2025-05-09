@@ -105,7 +105,7 @@ const Cart: React.FC = () => {
                 ))}
               </div>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-4 mb-4">
                 <div className="flex justify-between">
                   <h3 className="italic">Gracias por elegirnos</h3>
                 </div>
