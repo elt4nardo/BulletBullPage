@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { X, ShoppingBag, Trash2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
@@ -11,32 +11,44 @@ const Cart: React.FC = () => {
     isCartOpen,
     toggleCart,
     generateWhatsAppLink,
+    setCustomerInfo,
     customerInfo
   } = useCart();
+
+  const [firstName, setFirstName] = useState(customerInfo?.firstName || '');
+  const [lastName, setLastName] = useState(customerInfo?.lastName || '');
 
   if (!isCartOpen) return null;
 
   const handleWhatsAppClick = () => {
-    if (!customerInfo) {
-      alert('Por favor, ingresa tu nombre antes de realizar el pedido.');
+    if (!firstName.trim() || !lastName.trim()) {
+      alert('Por favor, completa tu nombre y apellido antes de realizar el pedido.');
       return;
     }
 
-    const url = generateWhatsAppLink(customerInfo.firstName, customerInfo.lastName);
-    if (url) {
-      window.open(url, '_blank'); // Abrir desde evento directo para evitar bloqueo
+    setCustomerInfo({ firstName: firstName.trim(), lastName: lastName.trim() });
+    const url = generateWhatsAppLink(firstName.trim(), lastName.trim());
+    
+    // Open WhatsApp in a new window with specific features to avoid popup blocking
+    const whatsappWindow = window.open(
+      url,
+      '_blank',
+      'width=600,height=600,scrollbars=yes,resizable=yes'
+    );
+
+    if (!whatsappWindow || whatsappWindow.closed || typeof whatsappWindow.closed === 'undefined') {
+      // Fallback if popup is blocked
+      alert('Por favor, habilita las ventanas emergentes para continuar con tu compra por WhatsApp');
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-50 animate-fadeIn">
-      {/* Overlay */}
       <div
         className="fixed inset-0 bg-black bg-opacity-50"
         onClick={toggleCart}
       ></div>
 
-      {/* Contenido */}
       <div className="relative w-full max-w-md bg-black border-l border-gray-800 h-full overflow-y-auto animate-slideIn">
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
@@ -101,6 +113,35 @@ const Cart: React.FC = () => {
                 <div className="flex justify-between pt-4 border-t border-gray-800">
                   <span className="text-white text-lg">Total</span>
                   <span className="text-white text-lg font-bold">${getCartTotal().toFixed(2)}</span>
+                </div>
+              </div>
+
+              <div className="space-y-4 mb-8">
+                <div>
+                  <label htmlFor="firstName" className="block text-sm font-medium text-white mb-2">
+                    Nombre
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full bg-gray-900 border border-gray-800 text-white px-4 py-2 focus:outline-none focus:border-white"
+                    placeholder="Tu nombre"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="block text-sm font-medium text-white mb-2">
+                    Apellido
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="w-full bg-gray-900 border border-gray-800 text-white px-4 py-2 focus:outline-none focus:border-white"
+                    placeholder="Tu apellido"
+                  />
                 </div>
               </div>
 

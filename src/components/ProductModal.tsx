@@ -33,8 +33,11 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
   };
 
   const handleAddToCart = () => {
-    if (!selectedSize) return;
-    addToCart({ ...product, selectedSize });
+    if (!selectedSize) {
+      alert('Por favor, selecciona un talle antes de agregar al carrito');
+      return;
+    }
+    addToCart(product, selectedSize);
     onClose();
   };
 
@@ -52,7 +55,6 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Gallery */}
           <div className="relative aspect-square bg-gray-900">
             <img 
               src={allImages[currentImageIndex]} 
@@ -86,7 +88,6 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
             )}
           </div>
 
-          {/* Info */}
           <div className="space-y-6">
             <div>
               <h2 className="text-3xl font-bold tracking-tighter text-white mb-2">{product.name}</h2>
@@ -95,7 +96,6 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
 
             <p className="text-white opacity-80">{product.description}</p>
 
-            {/* Talles */}
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-3">Talles</h3>
               <div className="flex gap-2 flex-wrap">
@@ -133,11 +133,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
             </div>
 
             <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                handleAddToCart();
-              }}
-              disabled={!selectedSize}
+              onClick={handleAddToCart}
               className={`w-full inline-flex items-center justify-center px-6 py-3 font-semibold tracking-wide text-sm uppercase transition-transform focus:outline-none
                 ${selectedSize ? 'bg-white text-black hover:translate-x-1' : 'bg-gray-700 text-gray-400 cursor-not-allowed'}
               `}
