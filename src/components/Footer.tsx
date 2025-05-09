@@ -26,11 +26,9 @@ const Footer: React.FC = () => {
 
           {/* Enlaces de información */}
           <div>
-            <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Information</h4>
+            <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Información</h4>
             <ul className="space-y-2">
               <li><a href="#" className="text-white opacity-70 hover:opacity-100 transition-opacity">Sobre Nosotros</a></li>
-              <li><a href="#" className="text-white opacity-70 hover:opacity-100 transition-opacity">Sustentabilidad</a></li>
-              <li><a href="#" className="text-white opacity-70 hover:opacity-100 transition-opacity">Carreras</a></li>
               <li><a href="#" className="text-white opacity-70 hover:opacity-100 transition-opacity">Términos y Condiciones</a></li>
             </ul>
           </div>
