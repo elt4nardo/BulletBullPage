@@ -59,7 +59,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
   <img 
     src={allImages[currentImageIndex]} 
     alt={product.name}
-    className="w-full h-full object-cover animate-fadeIn transition-transform duration-300 ease-in-out transform scale-110 hover:scale-100" // Aquí agregamos la animación y la clase para el zoom out
+    className="w-full h-full object-cover animate-fadeIn transition-transform duration-300 ease-in-out max-w-[80%] max-h-[80%] mx-auto" // Cambié el tamaño con max-w y max-h
     onClick={() => {
       // Aquí podrías hacer una acción cuando se haga clic sobre la imagen (ej. des-zoom o zoom out)
       setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
