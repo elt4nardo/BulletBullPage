@@ -107,8 +107,7 @@ const Cart: React.FC = () => {
 
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between">
-                  <span className="text-white opacity-70">Subtotal</span>
-                  <span className="text-white font-bold">${getCartTotal().toFixed(2)}</span>
+                  <h3 className="italic">Gracias por elegirnos</h3>
                 </div>
                 <div className="flex justify-between pt-4 border-t border-gray-800">
                   <span className="text-white text-lg">Total</span>
