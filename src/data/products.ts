@@ -27,8 +27,8 @@ export const products: Product[] = [
     price: 32000,
     image: 'https://i.ibb.co/pBfRmCRQ/Whats-App-Image-2025-04-29-at-12-40-11-72ec2eb5.webp',
     additionalImages: [
-      'https://i.ibb.co/wNg221C5/Removal-539.png',
-      'https://i.ibb.co/DDj5tP0Z/Removal-384.png'
+      'https://i.ibb.co/DDj5tP0Z/Removal-384.png',
+           'https://i.ibb.co/wNg221C5/Removal-539.png'
     ],
     category: 'tshirt',
     sizes: ['S', 'M', 'L', 'XL'],
