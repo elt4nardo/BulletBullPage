@@ -184,9 +184,7 @@ const About = () => {
             <div
               className={`transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             >
-              <button className="px-8 py-3 bg-white text-black font-medium rounded-none hover:bg-white/90 transition-all duration-300">
-                Conoce más
-              </button>
+              
             </div>
           </div>
 
