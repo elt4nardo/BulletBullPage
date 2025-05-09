@@ -47,14 +47,10 @@ const Footer: React.FC = () => {
           {/* Métodos de Pago */}
           <div>
             <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Métodos de Pago</h4>
-            <div className="flex flex-wrap gap-3 items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/MercadoPago_Logo.png" alt="Mercado Pago" className="h-6 bg-white rounded px-1" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" className="h-6 bg-white rounded px-1" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Mastercard-logo.png" alt="MasterCard" className="h-6 bg-white rounded px-1" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg" alt="Amex" className="h-6 bg-white rounded px-1" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Tarjeta_Naranja_logo.svg" alt="Naranja" className="h-6 bg-white rounded px-1" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Pagofacil_logo.png" alt="Pago Fácil" className="h-6 bg-white rounded px-1" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Rapipago_logo.svg" alt="Rapipago" className="h-6 bg-white rounded px-1" />
+            <div className="grid gap-3 items-center">
+              <li>VISA</li>
+              <li>MasterCard</li>
+              <li>Mercado Pago</li>
             </div>
           </div>
         </div>
