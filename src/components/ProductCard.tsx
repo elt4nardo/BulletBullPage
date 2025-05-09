@@ -43,10 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         <button 
-          onClick={(e) => {
-            e.stopPropagation();
-            addToCart(product);
-          }}
+          onClick={() => setIsModalOpen(true)}
           className="absolute right-4 -bottom-10 group-hover:bottom-4 w-10 h-10 bg-white text-black flex items-center justify-center transition-all duration-300"
           aria-label={`Add ${product.name} to cart`}
         >
