@@ -56,37 +56,42 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="relative aspect-square bg-gray-900">
-            <img 
-              src={allImages[currentImageIndex]} 
-              alt={product.name}
-              className="w-full h-full object-cover animate-fadeIn"
-            />
-            {allImages.length > 1 && (
-              <>
-                <button
-                  onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70 transition-all"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <button
-                  onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70 transition-all"
-                >
-                  <ChevronRight size={20} />
-                </button>
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                  {allImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
-                      className={`w-2 h-2 rounded-full ${currentImageIndex === index ? 'bg-white' : 'bg-white opacity-50'}`}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
+  <img 
+    src={allImages[currentImageIndex]} 
+    alt={product.name}
+    className="w-full h-full object-cover animate-fadeIn transition-transform duration-300 ease-in-out transform scale-110 hover:scale-100" // Aquí agregamos la animación y la clase para el zoom out
+    onClick={() => {
+      // Aquí podrías hacer una acción cuando se haga clic sobre la imagen (ej. des-zoom o zoom out)
+      setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
+    }}
+  />
+  {allImages.length > 1 && (
+    <>
+      <button
+        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70 transition-all"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-70 transition-all"
+      >
+        <ChevronRight size={20} />
+      </button>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+        {allImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
+            className={`w-2 h-2 rounded-full ${currentImageIndex === index ? 'bg-white' : 'bg-white opacity-50'}`}
+          />
+        ))}
+      </div>
+    </>
+  )}
+</div>
+
 
           <div className="space-y-6">
             <div>
