@@ -39,7 +39,7 @@ const RainEffect: React.FC = () => {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       // Draw and update drops
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
       ctx.lineWidth = 1;
 
       drops.forEach(drop => {
