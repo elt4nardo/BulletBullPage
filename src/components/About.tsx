@@ -190,13 +190,14 @@ const About = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            {valueBoxes.map((item, index) => (
-              <div
-                key={item.text}
-                className={`aspect-square border border-white/20 bg-black p-6 flex flex-col items-center justify-center text-center group hover:scale-[1.03] transition-all duration-300 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
-                style={{ transitionDelay: `${index * 100 + 400}ms` }}
-              >
+<div className="grid grid-cols-2 gap-6">
+  {valueBoxes.map((item, index) => (
+    <div
+      key={item.text}
+      className={`h-52 md:h-60 border border-white/20 bg-black p-6 flex flex-col justify-between text-center group hover:scale-[1.03] transition-all duration-300 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+      style={{ transitionDelay: `${index * 100 + 400}ms` }}
+    >
+
                 <div className="w-10 h-10 mb-4 text-white opacity-80 group-hover:opacity-100 transition-opacity">
                   {item.icon}
                 </div>
